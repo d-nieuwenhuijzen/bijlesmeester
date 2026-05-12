@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <main>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div>
+            <h1 class="text-center">Welkom bij de bijlesmeester</h1>
+            <p class="text-center">Deze website kan gebruikt worden door docenten en leerlingen zodat je bijles krijgt</p>
+        </div>
+    </main>
+{% endblock %}
