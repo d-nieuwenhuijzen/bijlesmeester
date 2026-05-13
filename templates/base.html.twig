@@ -23,23 +23,36 @@
     <body>
 
             <header>
-            <nav class="navbar nav bg-body-tertiary text-decoration-none">
+            <nav class="navbar nav bg-body-tertiary">
                 <div class="container-fluid">
                     <ul class="nav">
                         <li class="nav-link  "><a href="{{ path('app_home') }}" class="text-decoration-none text-black" >Home</a></li>
                         <li class="nav-link  "><a href="{{ path('app_voorwaarden') }}" class="text-decoration-none text-black" >Voorwaarden</a></li>
                         <li class="nav-link  "><a href="{{ path('app_info') }}" class="text-decoration-none text-black" >Informatie</a></li>
-                        <li class="nav-link text-end  "><a href="{{ path('app_register') }}" class="text-decoration-none text-black " >Registreren</a></li>
+                        <li class="nav-link  "><a href="{{ path('app_register') }}" class="text-decoration-none text-black " >Registreren</a></li>
+                        <li class="nav-link"><a href="{{ path('app_news') }}" class="text-decoration-none text-black " >Mededelingen</a></li>
 
                     </ul>
-                    <ul>
-                        <li class="nav-link text-end  "><a href="{{ path('app_login') }}" class="text-decoration-none text-black " >Login</a></li>
+                    <ul class="nav">
+                        {% if not is_granted("ROLE_USER") %}
+                        <li class="nav-link"><a href="{{ path('app_login') }}" class="text-decoration-none text-black " >Login</a></li>
+                         {% endif %}
+                        {% if is_granted("ROLE_USER") %}
+                        <li class="nav-link "><a href="{{ path('app_logout') }}" class="text-decoration-none text-black " >Log uit</a></li>
+                        {% endif %}
+
                     </ul>
                 </div>
             </nav>
             </header>
             <main>
+                {%  for label, messages in app.flashes %}
+                    {%  for msg in messages %}
 
+                        {{ msg }}
+
+                    {%  endfor %}
+                {%  endfor %}
             </main>
             {% block body %}{% endblock %}
     </body>
