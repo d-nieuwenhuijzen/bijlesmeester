@@ -29,6 +29,9 @@ class News
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTime $time = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $news = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,4 +96,6 @@ class News
 
         return $this;
     }
+
+
 }

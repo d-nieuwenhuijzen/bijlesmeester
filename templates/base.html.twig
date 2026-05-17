@@ -30,7 +30,9 @@
                         <li class="nav-link  "><a href="{{ path('app_voorwaarden') }}" class="text-decoration-none text-black" >Voorwaarden</a></li>
                         <li class="nav-link  "><a href="{{ path('app_info') }}" class="text-decoration-none text-black" >Informatie</a></li>
                         <li class="nav-link  "><a href="{{ path('app_register') }}" class="text-decoration-none text-black " >Registreren</a></li>
+                        {% if is_granted("ROLE_USER") %}
                         <li class="nav-link"><a href="{{ path('app_news') }}" class="text-decoration-none text-black " >Mededelingen</a></li>
+                        {% endif %}
 
                     </ul>
                     <ul class="nav">

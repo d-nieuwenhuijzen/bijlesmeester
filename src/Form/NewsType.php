@@ -25,13 +25,13 @@ class NewsType extends AbstractType
                 'class' => User::class,
                 'choice_label' => function (User $user): string {
                     return $user->getFirstName() . ' ' . $user->getLastName()   ;
-                }
-//                'query_builder' => function (EntityRepository $er) {
-//                    return $er->createQueryBuilder('u')
-//                        ->where('u.roles LIKE :role')
-//                        ->setParameter('role', '%ROLE_ADMIN%')
-//                        ->orderBy('u.roles', 'ASC');
-//                },
+                },
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->where('u.roles LIKE :role')
+                        ->setParameter('role', '%ROLE_ADMIN%')
+                        ->orderBy('u.roles', 'ASC');
+                },
             ])
             ->add('submit', SubmitType::class, ['label' => 'Toevoegen'])
         ;
