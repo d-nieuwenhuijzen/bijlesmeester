@@ -10,6 +10,8 @@
 
 <div class="example-wrapper">
     <h3>Welkom bij de mededelingen pagina. Maak hier een mededeling aan</h3>
+    {% if is_granted("ROLE_ADMIN") %}
     {{ form(form) }}
+    {% endif %}
 </div>
 {% endblock %}

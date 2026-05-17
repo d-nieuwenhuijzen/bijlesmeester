@@ -16,11 +16,14 @@ final class NewsController extends AbstractController
     {
         $form = $this->createForm(NewsType::class);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $news = $form->getData();
+            
             $entityManager->persist($news);
-            $this->addFlash('success', 'De mededeling is toegevoegd');
+            $news->flush();
 
+            $this->addFlash('success', 'De mededeling is toegevoegd');
             return $this->redirectToRoute('app_news');
         }
 

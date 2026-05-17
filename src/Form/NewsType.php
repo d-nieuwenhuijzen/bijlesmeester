@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\News;
 use App\Entity\User;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,6 +26,12 @@ class NewsType extends AbstractType
                 'choice_label' => function (User $user): string {
                     return $user->getFirstName() . ' ' . $user->getLastName()   ;
                 }
+//                'query_builder' => function (EntityRepository $er) {
+//                    return $er->createQueryBuilder('u')
+//                        ->where('u.roles LIKE :role')
+//                        ->setParameter('role', '%ROLE_ADMIN%')
+//                        ->orderBy('u.roles', 'ASC');
+//                },
             ])
             ->add('submit', SubmitType::class, ['label' => 'Toevoegen'])
         ;
